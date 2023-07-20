@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @StateObject private var selectedBudget = SelectedBudget()
-
+    
     
     var body: some View {
         TabView {
@@ -31,14 +31,15 @@ struct ContentView: View {
                     Text("Settings")
                 }
             
-
+            
             
         }.environmentObject(selectedBudget)
+            .background(.ultraThinMaterial)
         
     }
 }
 
 #Preview {
     ContentView().modelContainer(for: Transaction.self, inMemory: true)
-        
+    
 }

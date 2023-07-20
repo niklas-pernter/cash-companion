@@ -17,16 +17,12 @@ struct CreateBudgetView: View {
     
     @State private var name: String = ""
     @FocusState private var nameIsFocused: Bool
-
+    
     var body: some View {
         Form {
             
             Section {
-                HStack {
-                    Text("Name")
-                    Spacer()
-                    TextField("", text: $name).focused($nameIsFocused)
-                }
+                TextField("Name", text: $name).focused($nameIsFocused)
             }.onAppear{
                 self.nameIsFocused = true
             }
@@ -41,12 +37,7 @@ struct CreateBudgetView: View {
             }
             
             Section{
-                HStack {
-                    Text("Amount")
-                    Spacer()
-                    TextField("Amount", value: $amount, formatter: NumberFormatter())
-                }
-                
+                TextField("Amount", value: $amount, formatter: NumberFormatter())
             }
             
             

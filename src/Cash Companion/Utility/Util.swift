@@ -23,44 +23,59 @@ class Util {
         return currentDay >= startDay && currentDay <= endDay
     }
     
+    func addDaysToDate(date: Date = Date(), days: Int) -> Date {
+        var dateComponent = DateComponents()
+        dateComponent.day = days
+        let futureDate = Calendar.current.date(byAdding: dateComponent, to: date)!
+        return futureDate
+    }
     
-    func calculateRemainingDailyBudget(budget: Budget, distribute: Bool) -> Double? {
+    func calculateRemainingDailyBudget(budget: Budget, distribute: Bool, customDateEnd: Date = Date()) -> Double? {
+        print("customDate", customDateEnd.toString())
         let calendar = Calendar.current
-        let totalDays = calendar.dateComponents([.day], from: budget.startDate, to: budget.endDate).day! + 1
+        let totalDays = Calendar.current.numberOfDaysBetween(budget.startDate, and: budget.endDate)
         let dailyBudget = budget.amount / Double(totalDays)
+        print("totalDays", totalDays)
+        print("budget.amount", budget.amount)
+
         var nettoDailyBudget = 0.0
-        let passedDays = calendar.dateComponents([.day], from: budget.startDate, to: Date()).day!
-        var remainingDays = totalDays - passedDays
+        let passedDays = Calendar.current.numberOfDaysBetween(budget.startDate, and: customDateEnd)
+        let remainingDays = totalDays - passedDays
         
+        print("dailyBudget", dailyBudget)
+        print("passedDays", passedDays)
+        print("remainingDays", remainingDays)
+
+        var surplus = 0.0
         if distribute {
-            nettoDailyBudget = budget.getNetto() / Double(passedDays)
+            nettoDailyBudget = budget.getNetto() / Double(remainingDays)
+            print("netto daily", nettoDailyBudget)
             return nettoDailyBudget
         } else {
-            for i in 0...passedDays {
+            for i in 1...passedDays {
+                print("day " + String(i))
                 let transactionsOfDay = getTransactionsOfDay(budget: budget, day: i)
+                print("transactionsOfDay", transactionsOfDay)
+
                 let transactionsValue = transactionsOfDay.reduce(0, {$0 + $1.amount})
+                print("transactionsValue", transactionsValue)
+                print("dailyBudget", dailyBudget)
+                surplus += transactionsValue + dailyBudget
+                print("surplus", surplus)
                 nettoDailyBudget += transactionsValue + dailyBudget
+                print("nettoDailyBudget", nettoDailyBudget)
+
             }
             return nettoDailyBudget
         }
-        
-        
-        
     }
     
     func getTransactionsOfDay(budget: Budget, day: Int) -> [Transaction] {
-        var dateComponent = DateComponents()
-        dateComponent.day = day
-        let dateOfPassedDay = Calendar.current.date(byAdding: dateComponent, to: budget.startDate)!
+        let futureDate = addDaysToDate(date: budget.startDate, days: day)
         return budget.transactions.filter { transaction in
-            return Calendar.current.isDate(dateOfPassedDay, equalTo: transaction.timestamp, toGranularity: .day)
-        }
+            return Calendar.current.isDate(futureDate, inSameDayAs: transaction.timestamp)        }
     }
-    
-    
-    
 }
-
 
 extension Color {
     init(hex: String) {
@@ -90,11 +105,35 @@ extension Color {
 }
 
 extension Array where Element: Equatable {
-    
     // Remove first collection element that is equal to the given `object`:
     mutating func remove(object: Element) {
         guard let index = firstIndex(of: object) else {return}
         remove(at: index)
     }
     
+}
+
+extension Date {
+        func toString() -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.setLocalizedDateFormatFromTemplate("d MMMM yyyy")
+            return dateFormatter.string(from: self)
+        }
+    
+    func addDays(days: Int) -> Date {
+        var dateComponent = DateComponents()
+        dateComponent.day = days
+        let futureDate = Calendar.current.date(byAdding: dateComponent, to: self)!
+        return futureDate
+    }
+}
+
+extension Calendar {
+    func numberOfDaysBetween(_ from: Date, and to: Date) -> Int {
+        let fromDate = startOfDay(for: from) // <1>
+        let toDate = startOfDay(for: to) // <2>
+        let numberOfDays = dateComponents([.day], from: fromDate, to: toDate) // <3>
+        
+        return numberOfDays.day!
+    }
 }

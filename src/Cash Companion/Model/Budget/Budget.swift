@@ -35,12 +35,26 @@ final class Budget {
         return self.amount + self.transactions.reduce(0, {$0 + $1.amount})
     }
     
+    public func getRemainingDays() -> Int {
+        let calendar = Calendar.current
+        let totalDays = calendar.dateComponents([.day], from: startDate, to: endDate).day! + 1
+        let passedDays = calendar.dateComponents([.day], from: startDate, to: Date()).day!
+        return totalDays - passedDays
+    }
     
     public func getDuration() -> Int {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day], from: startDate, to: endDate)
         // The duration should be at least one day, hence adding 1
         return components.day! + 1
+    }
+    
+    public func getDailyBrutto() -> Double {
+        return amount / Double(getDuration())
+    }
+    
+    public func getTransactionsValue() -> Double {
+        return transactions.reduce(0, {$0 + $1.amount})
     }
     
 }

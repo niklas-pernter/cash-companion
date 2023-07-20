@@ -53,18 +53,29 @@ struct BudgetsView: View {
                 
             }
             .navigationTitle("Budgets")
-            .toolbar {
-                ToolbarItem {
-                    Button(action: {showCreateBudget = true}) {
-                        Label("Create Transaction", systemImage: "plus")
-                    }.sheet(isPresented: $showCreateBudget) {
-                        NavigationStack {
-                            CreateBudgetView()
+            .safeAreaInset(edge: .bottom,
+                                       alignment: .leading) {
+                            Button(action: {
+                                showCreateBudget = true
+                            }, label: {
+                                Label("New Budget", systemImage: "plus")
+                                    .padding(6)
+                                    .font(.system(size: 18))
+                                    .fontWeight(.bold)
+                                    .background(.gray.opacity(0.1),
+                                                in: Capsule())
+                                    .padding(.leading)
+                                    .padding(.bottom)
+                                    .symbolVariant(.circle.fill)
+                                
+                            }).sheet(isPresented: $showCreateBudget) {
+                                NavigationStack {
+                                    CreateBudgetView()
+                                    
+                                }.presentationDetents([.medium])
+                            }
                             
-                        }.presentationDetents([.medium])
-                    }
-                }
-            }
+                        }
         }
     }
     
