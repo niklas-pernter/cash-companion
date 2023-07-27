@@ -7,24 +7,30 @@
 
 import SwiftUI
 
+enum FocusedField {
+    case name, amount, starDate, endDate
+}
+
 struct CreateBudgetView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) var modelContext
     
-    @State private var startDate: Date = .now
-    @State private var endDate: Date = .now
+    @State private var startDate: Date = Date()
+    @State private var endDate: Date = Date().addDays(days: 1)
     @State var amount: Double = 0.0
     
     @State private var name: String = ""
-    @FocusState private var nameIsFocused: Bool
+    @FocusState private var focusedField: FocusedField?
     
     var body: some View {
         Form {
             
             Section {
-                TextField("Name", text: $name).focused($nameIsFocused)
-            }.onAppear{
-                self.nameIsFocused = true
+                HStack {
+                    TextField("Name", text: $name).focused($focusedField, equals: .name)
+                    Divider()
+                    TextField("Amount", value: $amount, formatter: NumberFormatter.dollarNumberFormatter)
+                }
             }
             
             
@@ -32,25 +38,32 @@ struct CreateBudgetView: View {
             Section{
                 
                 DatePicker("Start", selection: $startDate, displayedComponents: .date)
-                DatePicker("End", selection: $endDate, displayedComponents: .date)
+                    .onChange(of: startDate) {
+                        if startDate > endDate {
+                            endDate = startDate
+                        }
+                    }
+                DatePicker("End", selection: $endDate, in: startDate.addDays(days: 1)..., displayedComponents: .date)
+                    .onChange(of: endDate) {
+                        if endDate < startDate {
+                            startDate = endDate
+                        }
+                    }
                 
             }
-            
-            Section{
-                TextField("Amount", value: $amount, formatter: NumberFormatter())
-            }
-            
-            
             
             Button("Create Budget") {
                 withAnimation {
                     let budget = Budget(name: name, startDate: startDate, endDate: endDate, amount: amount)
                     modelContext.insert(budget)
+                    Haptics.shared.notify(.success)
                     dismiss()
                 }
             }
             .disabled(name.isEmpty)
             
+        }.onAppear {
+            focusedField = .name
         }
         .navigationTitle("Create Budget")
         .toolbar {

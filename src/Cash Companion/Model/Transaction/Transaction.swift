@@ -10,24 +10,27 @@ import SwiftData
 
 @Model
 final class Transaction {
-
-    @Attribute(.unique) var title: String
-    let timestamp: Date
+    var name: String?
+    let createdAt: Date
     let amount: Double
-
+    @Relationship(.nullify)
+    var category: Category?
     
-    init(title: String = "", timestamp: Date = .now, amount: Double = 0) {
-        self.title = title
-        self.timestamp = timestamp
+    init(name: String? = nil, createdAt: Date = .now, amount: Double = 0) {
+        self.name = name
+        self.createdAt = createdAt
         self.amount = amount
     }
+      
+    
+    
 }
 
 extension Transaction {
     
     static var dummy: Transaction {
-        .init(title: "Transaction 1",
-              timestamp: .now,
+        .init(name: "Transaction 1",
+              createdAt: .now,
               amount: 0.0)
     }
     

@@ -6,15 +6,23 @@
 //
 
 import SwiftUI
+import SwiftData
+import AuthenticationServices
+
 
 struct SettingsView: View {
+    @Environment(\.colorScheme) var colorScheme
+    @Query private var accounts: [Account]
+
+
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Profile")) {
-                    Text("")
-                }
-            }
+                
+                
+                    
+               
+            }.navigationTitle("Settings")
         }
     }
 }

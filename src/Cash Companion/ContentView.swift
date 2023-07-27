@@ -25,6 +25,17 @@ struct ContentView: View {
                     Image(systemName: "list.dash")
                     Text("Budgets")
                 }
+            
+            DashboardView()
+                .tabItem {
+                    Image(systemName: "chart.bar.fill")
+                    Text("Dashboard")
+                }
+            AccountsView()
+                .tabItem {
+                    Image(systemName: "building.columns")
+                    Text("Accounts")
+                }
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
@@ -40,6 +51,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView().modelContainer(for: Transaction.self, inMemory: true)
+    ContentView()
     
 }

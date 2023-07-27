@@ -14,54 +14,80 @@ class SelectedBudget: ObservableObject {
 
 
 @Model
-final class Budget {
-    
-    @Attribute(.unique) let name: String
+public final class Budget: NettoCalculatable {
+    let name: String
+    let createdAt: Date
     let startDate: Date
     let endDate: Date
     let amount: Double
-    
+
     @Relationship(.cascade)
     var transactions: [Transaction] = []
     
     init(name: String = "", startDate: Date = .now, endDate: Date = .now, amount: Double = 0.0) {
+        self.createdAt = .now
         self.name = name;
         self.startDate = startDate;
         self.endDate = endDate;
         self.amount = amount;
     }
     
-    public func getNetto() -> Double {
+    var nettoAmount: Double {
         return self.amount + self.transactions.reduce(0, {$0 + $1.amount})
     }
     
-    public func getRemainingDays() -> Int {
-        let calendar = Calendar.current
-        let totalDays = calendar.dateComponents([.day], from: startDate, to: endDate).day! + 1
-        let passedDays = calendar.dateComponents([.day], from: startDate, to: Date()).day!
-        return totalDays - passedDays
-    }
-    
-    public func getDuration() -> Int {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: startDate, to: endDate)
-        // The duration should be at least one day, hence adding 1
-        return components.day! + 1
-    }
-    
-    public func getDailyBrutto() -> Double {
-        return amount / Double(getDuration())
-    }
-    
-    public func getTransactionsValue() -> Double {
-        return transactions.reduce(0, {$0 + $1.amount})
-    }
     
 }
 
 extension Budget {
     static var dummy: Budget {
-        .init(name: "Budget 1", startDate: .now, endDate: .now, amount: 1000.0)
+        .init(name: "Budget 1", startDate: .now, endDate: .now.addDays(days: 10), amount: 1000.0)
     }
+    
+    func calculateDailyBudget(distribute: Bool = false, customCurrentDate: Date = Date()) -> Double {
+        if self.getRemainingDays() == nil {
+            return 0.0
+        }
+        
+        let totalDays = Calendar.current.numberOfDaysBetween(self.startDate, and: self.endDate)
+        print("total days function: ", totalDays)
+        let dailyBudget = self.amount / Double(totalDays)
+        print("dailyBudget function: ", dailyBudget)
+
+        
+        let passedDays = Calendar.current.numberOfDaysBetween(self.startDate, and: customCurrentDate)
+        print("passedDays function: ", passedDays)
+
+        let remainingDays = totalDays - passedDays + 1
+
+        if distribute {
+            return (self.nettoAmount / Double(remainingDays)).isInfinite ? 0.0 : self.nettoAmount / Double(remainingDays)
+        } else {
+            let nettoDailyBudget = (1...passedDays).reduce(0.0) { (result, i) -> Double in
+                
+                let transactionsOfDay = transactions.byDate(date: self.startDate.addDays(days: i))
+                let transactionsValue = transactionsOfDay.reduce(0, {$0 + $1.amount})
+                return result + transactionsValue + dailyBudget
+            }
+            return nettoDailyBudget
+        }
+    }
+
+    
+    public func getRemainingDays() -> Int? {
+        let calendar = Calendar.current
+        let remainingDays = calendar.numberOfDaysBetween(self.startDate, and: self.endDate) -
+        calendar.numberOfDaysBetween(self.startDate, and: Date()) + 1
+        return remainingDays >= 0 ? remainingDays : nil
+    }
+
+
+    
+    public func getNettoUntil(date: Date) -> Double {
+        return self.amount + self.transactions.filter{ transaction in
+            transaction.createdAt <= date
+        }.reduce(0, {$0 + $1.amount})
+    }
+
     
 }
