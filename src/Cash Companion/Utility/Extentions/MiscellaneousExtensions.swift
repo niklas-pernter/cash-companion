@@ -26,5 +26,18 @@ extension Double {
         formatter.maximumFractionDigits = 2
         return formatter.string(from: NSNumber(value: self)) ?? ""
     }
+    
+
+    
+    func toCents() -> Int {
+        return Int(self*100)
+    }
 }
+
+extension Int {
+    func toDollars() -> Double {
+        return Double(self/100)
+    }
+}
+
 

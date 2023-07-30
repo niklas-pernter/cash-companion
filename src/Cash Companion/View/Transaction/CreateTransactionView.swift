@@ -26,7 +26,7 @@ struct CreateTransactionView: View {
     @State private var amountCents: Int = 0
     @State private var createdAt = Date()
     @State private var selectedCategory: Category? = nil
-    @State private var amountSigned: SignedNumber = SignedNumber.negative
+    @State private var amountSigned: SignedNumber = SignedNumber.positive
     
     var dateInterval: DateInterval?
     var onTransactionCreated: (Transaction, Account?, Account?) -> Void
@@ -76,7 +76,8 @@ struct CreateTransactionView: View {
                                     }
                                 })
                         
-                        }.listRowBackground(Color.blue.opacity(0))
+                        }.listRowBackground(Color.blue.opacity(0)).visible(!isAccountTransfer)
+                            
                         
                         CurrencyField(value: $amountCents)
                                             .font(.largeTitle.monospaced())
@@ -94,8 +95,6 @@ struct CreateTransactionView: View {
             }.listRowBackground(Color.blue.opacity(0))
             
             Section {
-               
-                
                 HStack {
                     TextField("Name", text: $name)
                     Divider()
@@ -147,6 +146,7 @@ struct CreateTransactionView: View {
                 }
             }
         }.navigationTitle("Create Transaction")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -156,7 +156,7 @@ struct CreateTransactionView: View {
 
 extension CreateTransactionView {
     
-    func asAccountTransfer(transfer: Bool) -> some View {
+    func asAccountTransfer(_ transfer: Bool) -> some View {
         return CreateTransactionView(onTransactionCreated: self.onTransactionCreated, isAccountTransfer: true)
     }
 }

@@ -18,9 +18,24 @@ extension Array where Element: Equatable {
 }
 
 extension Array where Element: Transaction {
-    var sortedTransactions: [Transaction] {
-        return self.sorted(by: { $0.createdAt > $1.createdAt })
+    enum TransactionSortMethod {
+        case name
+        case createdAt
+        case amount
     }
+
+    
+    func sortedTransactions(by method: TransactionSortMethod = .createdAt) -> [Transaction] {
+        switch method {
+        case .name:
+            return self.sorted(by: { $0.name ?? "" < $1.name ?? "" })
+        case .createdAt:
+            return self.sorted(by: { $0.createdAt > $1.createdAt })
+        case .amount:
+            return self.sorted(by: { $0.amount > $1.amount })
+        }
+    }
+
     
     var summed: Double {
         return self.reduce(0, { $0 + $1.amount})

@@ -8,15 +8,5 @@
 import Foundation
 import SwiftUI
 
-extension Text {
-    func visible(_ shouldShow: Bool) -> some View {
-        Group {
-            if shouldShow {
-                self
-            } else {
-                EmptyView()
-            }
-        }
-    }
-}
+
 

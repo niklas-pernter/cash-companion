@@ -13,44 +13,41 @@ struct ContentView: View {
     
     
     var body: some View {
-        TabView {
-            DailyBudgetView()
-                .tabItem {
-                    Image(systemName: "dollarsign")
-                    Text("Daily Budget")
-                }
-            
-            BudgetsView()
-                .tabItem {
-                    Image(systemName: "list.dash")
-                    Text("Budgets")
-                }
-            
-            DashboardView()
-                .tabItem {
-                    Image(systemName: "chart.bar.fill")
-                    Text("Dashboard")
-                }
-            AccountsView()
-                .tabItem {
-                    Image(systemName: "building.columns")
-                    Text("Accounts")
-                }
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
-            
-            
-            
-        }.environmentObject(selectedBudget)
+        NavigationStack {
+            TabView {
+                DailyBudgetView()
+                    .tabItem {
+                        Image(systemName: "dollarsign")
+                        Text("Daily Budget")
+                    }
+                
+                BudgetsView()
+                    .tabItem {
+                        Image(systemName: "list.dash")
+                        Text("Budgets")
+                    }
+                
+                DashboardView()
+                    .tabItem {
+                        Image(systemName: "chart.bar.fill")
+                        Text("Dashboard")
+                    }
+                SettingsView()
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
+                
+                
+                
+            }
+            .environmentObject(selectedBudget)
             .background(.ultraThinMaterial)
+            
+        }
+        
         
     }
 }
 
-#Preview {
-    ContentView()
-    
-}
+

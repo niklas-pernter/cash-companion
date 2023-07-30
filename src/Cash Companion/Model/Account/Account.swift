@@ -10,9 +10,9 @@ import SwiftData
 
 @Model
 final class Account: Hashable {
-    
+
     let name: String
-    let initialAmount: Double
+    var initialAmount: Double
     @Relationship(.nullify)
     var transactions: [Transaction] = []
     

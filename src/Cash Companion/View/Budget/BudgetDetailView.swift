@@ -19,14 +19,14 @@ struct BudgetDetailView: View {
     @State private var showCreateTransaction = false
     
     var body: some View {
-        let sortedTransactions = budget.transactions.sortedTransactions
         
         List {
-            TransactionSection(title: "Transactions", transactions: budget.transactions, onDelete: { transaction in
+            TransactionSection(title: "Transactions", transactions: budget.transactions.sortedTransactions(), onDelete: { transaction in
                 budget.transactions.remove(object: transaction)
             }).withAnalytics()
         }
         .navigationTitle(budget.name)
+        .navigationBarTitleDisplayMode(.large)
         .safeAreaInset(edge: .bottom,
                        alignment: .leading) {
             Button(action: {
@@ -38,8 +38,8 @@ struct BudgetDetailView: View {
                     CreateTransactionView(dateInterval: DateInterval(start: budget.startDate, end: budget.endDate), onTransactionCreated:  { transaction,_,_  in
                         budget.transactions.append(transaction)
                     })
-                    
-                }.presentationDetents([.fraction(0.4)])
+                 }.presentationDetents([.fraction(0.5)])
+                    .presentationBackground(.ultraThinMaterial)
             }
             
         }

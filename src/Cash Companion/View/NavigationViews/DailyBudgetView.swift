@@ -67,7 +67,6 @@ struct DailyBudgetView: View {
                         }
                         
                         Section(header: Text(Date().toString())) {
-
                             HStack{
                                 Spacer()
                                 VStack {
@@ -105,16 +104,29 @@ struct DailyBudgetView: View {
             }
             .navigationTitle("Daily Budget")
             .toolbar {
-                Menu(content: {
-                    ForEach(budgets, id: \.self) { budget in
-                        Button(action: {selectedBudget.budget = budget}) {
-                            Text(budget.name).foregroundColor(.gray)
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu(content: {
+                        ForEach(budgets, id: \.self) { budget in
+                            Button(action: {selectedBudget.budget = budget}) {
+                                Text(budget.name).foregroundColor(.gray)
+                            }
                         }
+                                            
+                    }, label: {
+                        Label ("Destination", systemImage: "filemenu.and.selection")
+                    })
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Image(systemName: "person.crop.circle")
+                        
                     }
-                                        
-                }, label: {
-                    Label ("Destination", systemImage: "filemenu.and.selection")
-                })
+                }
+                
+                
             }
         }.onAppear {
             selectedBudget.budget = selectedBudget.budget ?? budgets.first

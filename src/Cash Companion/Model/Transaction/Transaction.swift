@@ -21,18 +21,12 @@ final class Transaction {
         self.createdAt = createdAt
         self.amount = amount
     }
-      
-    
-    
 }
 
 extension Transaction {
-    
     static var dummy: Transaction {
         .init(name: "Transaction 1",
               createdAt: .now,
               amount: 0.0)
     }
-    
-
 }

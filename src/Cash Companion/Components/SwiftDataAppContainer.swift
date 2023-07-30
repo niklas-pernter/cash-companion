@@ -26,7 +26,9 @@ let transactionCategories: [Category] = [
     Category(name: "Insurance"),
     Category(name: "Debt"),
     Category(name: "Education"),
-    Category(name: "Miscellaneous")
+    Category(name: "Miscellaneous"),
+    Category(name: "Transfer")
+
 ]
 
 let bankAccounts: [Account] = [
@@ -36,17 +38,12 @@ let bankAccounts: [Account] = [
 
 ]
 
-
-let budgets: [Budget] = [
-    .dummy
-]
-
 @MainActor
 func createAppContainer(useInMemory: Bool = false) -> ModelContainer {
     do {
         
         let container = try ModelContainer(
-                    for: [Budget.self, Transaction.self, Category.self, Account.self],
+            for: [Budget.self, Transaction.self, Category.self, Account.self, Goal.self],
                     ModelConfiguration(inMemory: useInMemory)
                 )
         if(!hasDefaultCategories(container: container)) {
@@ -59,11 +56,7 @@ func createAppContainer(useInMemory: Bool = false) -> ModelContainer {
                 container.mainContext.insert(object: bankAccount)
             }
         }
-        if(hasDefaultBudget(container: container)) {
-            for budget in budgets {
-                container.mainContext.insert(object: budget)
-            }
-        }
+
 
         return container
     } catch {
@@ -84,15 +77,6 @@ func createAppContainer(useInMemory: Bool = false) -> ModelContainer {
     let itemFetchDescriptor = FetchDescriptor<Account>()
     do {
         return try container.mainContext.fetch(itemFetchDescriptor).count == bankAccounts.count
-    } catch {
-        return false
-    }
-}
-
-@MainActor func hasDefaultBudget(container: ModelContainer) -> Bool {
-    let itemFetchDescriptor = FetchDescriptor<Budget>()
-    do {
-        return try container.mainContext.fetch(itemFetchDescriptor).count == 0
     } catch {
         return false
     }

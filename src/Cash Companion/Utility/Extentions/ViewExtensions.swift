@@ -6,3 +6,23 @@
 //
 
 import Foundation
+import SwiftUI
+
+
+extension View {
+    
+    func asNavigationView(title: String?) -> some View {
+        NavigationStack { self }.navigationTitle(title ?? "")
+    }
+    
+    func visible(_ shouldShow: Bool) -> some View {
+        Group {
+            if shouldShow {
+                self
+            } else {
+                EmptyView()
+            }
+        }
+    }
+}
+

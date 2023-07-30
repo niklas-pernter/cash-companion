@@ -29,10 +29,12 @@
 		856297F12A6C6FB5005BFA78 /* TransactionsBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856297F02A6C6FB5005BFA78 /* TransactionsBarChartView.swift */; };
 		856297F32A6DF1DE005BFA78 /* BudgetListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856297F22A6DF1DE005BFA78 /* BudgetListRowView.swift */; };
 		857498052A71E69800F9F66D /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857498042A71E69800F9F66D /* CustomPicker.swift */; };
-		8574980B2A72023C00F9F66D /* CurrencyField in Frameworks */ = {isa = PBXBuildFile; productRef = 8574980A2A72023C00F9F66D /* CurrencyField */; };
 		8582E6762A6EE1A2002DCD57 /* BudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582E6752A6EE1A2002DCD57 /* BudgetTests.swift */; };
 		8582E6782A6EF5C4002DCD57 /* FabActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582E6772A6EF5C4002DCD57 /* FabActionButton.swift */; };
 		85AA64AD2A681D04004DCDE2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AA64AC2A681D04004DCDE2 /* SettingsView.swift */; };
+		85B536282A73C9D70050D766 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B536272A73C9D70050D766 /* Goal.swift */; };
+		85B5362D2A73EB2A0050D766 /* CreateGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5362C2A73EB2A0050D766 /* CreateGoalView.swift */; };
+		85B536352A74191A0050D766 /* CurrencyField in Frameworks */ = {isa = PBXBuildFile; productRef = 85B536342A74191A0050D766 /* CurrencyField */; };
 		85D77C6A2A6FFAC1007777DF /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D77C692A6FFAC1007777DF /* Account.swift */; };
 		85D77C702A701820007777DF /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D77C6F2A701820007777DF /* Protocols.swift */; };
 		85D77C732A702875007777DF /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D77C722A702875007777DF /* AccountListRow.swift */; };
@@ -108,6 +110,8 @@
 		8582E6752A6EE1A2002DCD57 /* BudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTests.swift; sourceTree = "<group>"; };
 		8582E6772A6EF5C4002DCD57 /* FabActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabActionButton.swift; sourceTree = "<group>"; };
 		85AA64AC2A681D04004DCDE2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		85B536272A73C9D70050D766 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		85B5362C2A73EB2A0050D766 /* CreateGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGoalView.swift; sourceTree = "<group>"; };
 		85D77C692A6FFAC1007777DF /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		85D77C6F2A701820007777DF /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		85D77C722A702875007777DF /* AccountListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListRow.swift; sourceTree = "<group>"; };
@@ -122,8 +126,8 @@
 		85D77C852A71497B007777DF /* MiscellaneousExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscellaneousExtensions.swift; sourceTree = "<group>"; };
 		85D77C882A714E88007777DF /* TransactionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsSection.swift; sourceTree = "<group>"; };
 		85D77C8A2A719562007777DF /* AccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsView.swift; sourceTree = "<group>"; };
-		85D77CAA2A719FE7007777DF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		85D77CAC2A719FE7007777DF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		85D7F4702A76EF39001770D6 /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = System/Library/Frameworks/SwiftData.framework; sourceTree = SDKROOT; };
+		85D7F4722A76EF41001770D6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8574980B2A72023C00F9F66D /* CurrencyField in Frameworks */,
+				85B536352A74191A0050D766 /* CurrencyField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,8 +162,8 @@
 				851355752A605D2700DF03B4 /* Cash Companion */,
 				851355882A605D2B00DF03B4 /* Cash CompanionTests */,
 				851355922A605D2B00DF03B4 /* Cash CompanionUITests */,
-				85D77C912A719C20007777DF /* Frameworks */,
 				851355742A605D2700DF03B4 /* Products */,
+				85D7F46F2A76EF39001770D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,11 +249,36 @@
 			path = Analytics;
 			sourceTree = "<group>";
 		};
+		85B536262A73C9CA0050D766 /* Goal */ = {
+			isa = PBXGroup;
+			children = (
+				85B536272A73C9D70050D766 /* Goal.swift */,
+			);
+			path = Goal;
+			sourceTree = "<group>";
+		};
+		85B5362B2A73EB0F0050D766 /* Goal */ = {
+			isa = PBXGroup;
+			children = (
+				85B5362C2A73EB2A0050D766 /* CreateGoalView.swift */,
+			);
+			path = Goal;
+			sourceTree = "<group>";
+		};
+		85B5362E2A73EFBE0050D766 /* NavigationViews */ = {
+			isa = PBXGroup;
+			children = (
+				851355AA2A6064D200DF03B4 /* DailyBudgetView.swift */,
+				851355A82A605D8F00DF03B4 /* BudgetsView.swift */,
+				856297E82A6C620D005BFA78 /* DashboardView.swift */,
+				85AA64AC2A681D04004DCDE2 /* SettingsView.swift */,
+			);
+			path = NavigationViews;
+			sourceTree = "<group>";
+		};
 		85D77C622A6FFA19007777DF /* Budget */ = {
 			isa = PBXGroup;
 			children = (
-				851355A82A605D8F00DF03B4 /* BudgetsView.swift */,
-				851355AA2A6064D200DF03B4 /* DailyBudgetView.swift */,
 				851355AC2A60655200DF03B4 /* BudgetDetailView.swift */,
 				851355A22A605D4800DF03B4 /* CreateBudgetView.swift */,
 			);
@@ -320,11 +349,11 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
-		85D77C912A719C20007777DF /* Frameworks */ = {
+		85D7F46F2A76EF39001770D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				85D77CAA2A719FE7007777DF /* WidgetKit.framework */,
-				85D77CAC2A719FE7007777DF /* SwiftUI.framework */,
+				85D7F4722A76EF41001770D6 /* SwiftUI.framework */,
+				85D7F4702A76EF39001770D6 /* SwiftData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -332,6 +361,7 @@
 		85F0913C2A64A7BF0060EF81 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				85B536262A73C9CA0050D766 /* Goal */,
 				85D77C672A6FFAB1007777DF /* Account */,
 				856297DB2A6AC3F1005BFA78 /* Category */,
 				85F0913F2A64A7F50060EF81 /* Budget */,
@@ -344,11 +374,11 @@
 		85F0913D2A64A7C90060EF81 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				85B5362E2A73EFBE0050D766 /* NavigationViews */,
+				85B5362B2A73EB0F0050D766 /* Goal */,
 				85D77C712A702866007777DF /* Account */,
 				85D77C642A6FFA23007777DF /* Transaction */,
 				85D77C622A6FFA19007777DF /* Budget */,
-				85AA64AC2A681D04004DCDE2 /* SettingsView.swift */,
-				856297E82A6C620D005BFA78 /* DashboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -396,7 +426,7 @@
 			);
 			name = "Cash Companion";
 			packageProductDependencies = (
-				8574980A2A72023C00F9F66D /* CurrencyField */,
+				85B536342A74191A0050D766 /* CurrencyField */,
 			);
 			productName = "Cash Companion";
 			productReference = 851355732A605D2700DF03B4 /* Cash Companion.app */;
@@ -471,7 +501,7 @@
 			);
 			mainGroup = 8513556A2A605D2700DF03B4;
 			packageReferences = (
-				857498092A72023C00F9F66D /* XCRemoteSwiftPackageReference "swiftui-currency-field" */,
+				85B536332A74191A0050D766 /* XCRemoteSwiftPackageReference "swiftui-currency-field" */,
 			);
 			productRefGroup = 851355742A605D2700DF03B4 /* Products */;
 			projectDirPath = "";
@@ -525,6 +555,7 @@
 				851355AF2A60661000DF03B4 /* CreateTransactionView.swift in Sources */,
 				857498052A71E69800F9F66D /* CustomPicker.swift in Sources */,
 				85D77C8B2A719562007777DF /* AccountsView.swift in Sources */,
+				85B536282A73C9D70050D766 /* Goal.swift in Sources */,
 				85D77C862A71497B007777DF /* MiscellaneousExtensions.swift in Sources */,
 				851355792A605D2700DF03B4 /* ContentView.swift in Sources */,
 				851355AD2A60655200DF03B4 /* BudgetDetailView.swift in Sources */,
@@ -538,6 +569,7 @@
 				851355A32A605D4800DF03B4 /* CreateBudgetView.swift in Sources */,
 				851355A52A605D6200DF03B4 /* Transaction.swift in Sources */,
 				85D77C7A2A714718007777DF /* ViewExtensions.swift in Sources */,
+				85B5362D2A73EB2A0050D766 /* CreateGoalView.swift in Sources */,
 				856297F32A6DF1DE005BFA78 /* BudgetListRowView.swift in Sources */,
 				851355A92A605D8F00DF03B4 /* BudgetsView.swift in Sources */,
 				85D77C822A7147A4007777DF /* DateExtensions.swift in Sources */,
@@ -884,7 +916,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		857498092A72023C00F9F66D /* XCRemoteSwiftPackageReference "swiftui-currency-field" */ = {
+		85B536332A74191A0050D766 /* XCRemoteSwiftPackageReference "swiftui-currency-field" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jtrinc/swiftui-currency-field.git";
 			requirement = {
@@ -895,9 +927,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8574980A2A72023C00F9F66D /* CurrencyField */ = {
+		85B536342A74191A0050D766 /* CurrencyField */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 857498092A72023C00F9F66D /* XCRemoteSwiftPackageReference "swiftui-currency-field" */;
+			package = 85B536332A74191A0050D766 /* XCRemoteSwiftPackageReference "swiftui-currency-field" */;
 			productName = CurrencyField;
 		};
 /* End XCSwiftPackageProductDependency section */

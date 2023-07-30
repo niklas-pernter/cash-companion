@@ -21,7 +21,7 @@ struct AccountsView: View {
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             List {
                 
                 Button(action: {showTransferSheet = true}) {
@@ -31,9 +31,9 @@ struct AccountsView: View {
                         CreateTransactionView(onTransactionCreated: { transaction, AccountFrom, AccountTo in
                             let transactionForFromAccount = Transaction(name: transaction.name, createdAt: transaction.createdAt, amount: -transaction.amount)
                             transactionForFromAccount.category = transaction.category
-                            AccountFrom?.transactions.append(transaction)
-                            AccountTo?.transactions.append(transactionForFromAccount)
-                        }).asAccountTransfer(transfer: true)
+                            AccountFrom?.transactions.append(transactionForFromAccount)
+                            AccountTo?.transactions.append(transaction)
+                        }).asAccountTransfer(true)
                        
 
                     }.presentationDetents([.fraction(0.7)])

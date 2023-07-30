@@ -6,26 +6,59 @@
 //
 
 import SwiftUI
+import CurrencyField
 
 struct AccountDetailView: View {
-    var account: Account
+    @Bindable var account: Account
     @Environment(\.modelContext) private var modelContext
-
+    
     @State private var showCreateTransaction = false
-
+    @State var nameInEditMode = false
+    @State var amountCents = 0
     
     var body: some View {
-                
+        
         NavigationView {
             List {
                 
                 Section(header: Text("Account Info")) {
                     VStack {
                         HStack {
-                            Text("Amount")
-                            Spacer()
-                            Text("\(account.nettoAmount, specifier: "%.2f")")
                             
+                            
+                            if nameInEditMode {
+                                CurrencyField(value: $amountCents).textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .padding(.all, 5)
+                                    .background(Color(.systemGray4))
+                                    .cornerRadius(5)
+                                
+                                
+                            } else {
+                                Text(account.initialAmount.asCurrency())
+                            }
+                            Spacer()
+                            Button(action: {
+                                nameInEditMode = true
+                            }) {
+                                if(nameInEditMode) {
+                                    Text("Save").fontWeight(.light)
+                                        .foregroundColor(Color.blue)
+                                        .onTapGesture {
+                                            account.initialAmount = amountCents.toDollars()
+                                            nameInEditMode = false
+                                        }
+                                        
+                                }
+                                else {
+                                    Text("Edit").fontWeight(.light)
+                                        .foregroundColor(Color.blue).onTapGesture {
+                                            nameInEditMode = true
+                                        }
+                                }
+                                
+                            }
+                        }.onAppear {
+                            amountCents = Int(account.initialAmount.toCents())
                         }
                     }
                 }
@@ -56,6 +89,3 @@ struct AccountDetailView: View {
     }
 }
 
-#Preview {
-    AccountDetailView(account: .dummy)
-}
