@@ -13,6 +13,7 @@ final class Transaction {
     var name: String?
     let createdAt: Date
     let amount: Double
+    
     @Relationship(.nullify)
     var category: Category?
     

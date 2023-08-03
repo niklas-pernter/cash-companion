@@ -7,8 +7,3 @@
 
 import Foundation
 import SwiftData
-
-protocol NettoCalculatable {
-    var nettoAmount: Double { get }
-}
-

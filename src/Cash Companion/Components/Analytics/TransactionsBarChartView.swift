@@ -16,6 +16,7 @@ struct TransactionData {
 struct TransactionsBarChartView: View {
     
     let transactions: [Transaction]
+    var title = "Transactions"
     
     // Calculate transactions grouped by day
     func transactionsByDay(extract: (Transaction) -> TransactionData) -> [(createdAt: Date, amount: Double)] {
@@ -29,8 +30,9 @@ struct TransactionsBarChartView: View {
 
         
         VStack {
+            
             HStack {
-                Text("Transactions").fontWeight(.semibold)
+                Text(title).fontWeight(.semibold).visible(!title.isEmpty)
             }
             Chart {
                 ForEach(dataByDay, id: \.createdAt) { transactionByDay in
@@ -38,7 +40,7 @@ struct TransactionsBarChartView: View {
                         x: .value("Date", transactionByDay.createdAt, unit: .day),
                         y: .value("Amount", transactionByDay.amount)
                     ).foregroundStyle(transactionByDay.amount >= 0 ? Color.blue : Color.red)
-
+                        
                 }
             }
             .chartYAxis {
@@ -48,19 +50,16 @@ struct TransactionsBarChartView: View {
                 AxisMarks(stroke: StrokeStyle(lineWidth: 0))
                 
             }
-            .frame(height: 250)
             .padding()
             
         }
-        
-        
-        
     }
     
     
-    
-    #Preview {
-        TransactionsBarChartView(transactions: [])
-    }
-    
+}
+
+
+
+#Preview {
+    TransactionsBarChartView(transactions: [])
 }

@@ -14,7 +14,7 @@ class SelectedBudget: ObservableObject {
 
 
 @Model
-public final class Budget: NettoCalculatable {
+public final class Budget {
     let name: String
     let createdAt: Date
     let startDate: Date
@@ -36,6 +36,18 @@ public final class Budget: NettoCalculatable {
         return self.amount + self.transactions.reduce(0, {$0 + $1.amount})
     }
     
+    var duration: Int {
+        return Calendar.current.numberOfDaysBetween(startDate, and: endDate)
+    }
+    
+    
+    var remainingDays: Int? {
+        let calendar = Calendar.current
+        let remainingDays = calendar.numberOfDaysBetween(startDate, and: endDate) -
+        calendar.numberOfDaysBetween(startDate, and: Date()) + 1
+        return remainingDays >= 0 ? remainingDays : nil
+    }
+
     
 }
 
@@ -44,44 +56,33 @@ extension Budget {
         .init(name: "Budget 1", startDate: .now, endDate: .now.addDays(days: 10), amount: 1000.0)
     }
     
+
+    
     func calculateDailyBudget(distribute: Bool = false, customCurrentDate: Date = Date()) -> Double {
-        if self.getRemainingDays() == nil {
+        if self.remainingDays == nil {
             return 0.0
         }
         
-        let totalDays = Calendar.current.numberOfDaysBetween(self.startDate, and: self.endDate)
-        print("total days function: ", totalDays)
-        let dailyBudget = self.amount / Double(totalDays)
-        print("dailyBudget function: ", dailyBudget)
+        let dailyBudget = self.amount / Double(self.duration)
 
         
         let passedDays = Calendar.current.numberOfDaysBetween(self.startDate, and: customCurrentDate)
-        print("passedDays function: ", passedDays)
 
-        let remainingDays = totalDays - passedDays + 1
+        let remainingDays = self.duration - passedDays + 1
 
         if distribute {
             return (self.nettoAmount / Double(remainingDays)).isInfinite ? 0.0 : self.nettoAmount / Double(remainingDays)
         } else {
             let nettoDailyBudget = (1...passedDays).reduce(0.0) { (result, i) -> Double in
                 
-                let transactionsOfDay = transactions.byDate(date: self.startDate.addDays(days: i))
+                let transactionsOfDay = transactions.byDate(date: self.startDate.addDays(days: i-1))
+                print("transactions of day \(Date().toString())", transactionsOfDay.count)
                 let transactionsValue = transactionsOfDay.reduce(0, {$0 + $1.amount})
                 return result + transactionsValue + dailyBudget
             }
             return nettoDailyBudget
         }
     }
-
-    
-    public func getRemainingDays() -> Int? {
-        let calendar = Calendar.current
-        let remainingDays = calendar.numberOfDaysBetween(self.startDate, and: self.endDate) -
-        calendar.numberOfDaysBetween(self.startDate, and: Date()) + 1
-        return remainingDays >= 0 ? remainingDays : nil
-    }
-
-
     
     public func getNettoUntil(date: Date) -> Double {
         return self.amount + self.transactions.filter{ transaction in

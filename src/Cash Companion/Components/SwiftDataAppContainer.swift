@@ -48,12 +48,12 @@ func createAppContainer(useInMemory: Bool = false) -> ModelContainer {
                 )
         if(!hasDefaultCategories(container: container)) {
             for category in transactionCategories {
-                container.mainContext.insert(object: category)
+                container.mainContext.insert(category)
             }
         }
         if(!hasDefaultBankAccounts(container: container)) {
             for bankAccount in bankAccounts {
-                container.mainContext.insert(object: bankAccount)
+                container.mainContext.insert(bankAccount)
             }
         }
 

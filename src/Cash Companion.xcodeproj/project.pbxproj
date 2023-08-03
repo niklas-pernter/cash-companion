@@ -20,7 +20,6 @@
 		851355A92A605D8F00DF03B4 /* BudgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851355A82A605D8F00DF03B4 /* BudgetsView.swift */; };
 		851355AB2A6064D200DF03B4 /* DailyBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851355AA2A6064D200DF03B4 /* DailyBudgetView.swift */; };
 		851355AD2A60655200DF03B4 /* BudgetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851355AC2A60655200DF03B4 /* BudgetDetailView.swift */; };
-		851355AF2A60661000DF03B4 /* CreateTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851355AE2A60661000DF03B4 /* CreateTransactionView.swift */; };
 		856297DD2A6AC3FD005BFA78 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856297DC2A6AC3FD005BFA78 /* Category.swift */; };
 		856297E52A6C1C47005BFA78 /* CustomNoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856297E42A6C1C47005BFA78 /* CustomNoContentView.swift */; };
 		856297E72A6C607F005BFA78 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856297E62A6C607F005BFA78 /* Haptics.swift */; };
@@ -29,6 +28,8 @@
 		856297F12A6C6FB5005BFA78 /* TransactionsBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856297F02A6C6FB5005BFA78 /* TransactionsBarChartView.swift */; };
 		856297F32A6DF1DE005BFA78 /* BudgetListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856297F22A6DF1DE005BFA78 /* BudgetListRowView.swift */; };
 		857498052A71E69800F9F66D /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857498042A71E69800F9F66D /* CustomPicker.swift */; };
+		857F95D42A77C000007F8E03 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F95D32A77C000007F8E03 /* TransactionsView.swift */; };
+		857F95D62A77D6F8007F8E03 /* CreateTransactionImproved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F95D52A77D6F8007F8E03 /* CreateTransactionImproved.swift */; };
 		8582E6762A6EE1A2002DCD57 /* BudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582E6752A6EE1A2002DCD57 /* BudgetTests.swift */; };
 		8582E6782A6EF5C4002DCD57 /* FabActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582E6772A6EF5C4002DCD57 /* FabActionButton.swift */; };
 		85AA64AD2A681D04004DCDE2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AA64AC2A681D04004DCDE2 /* SettingsView.swift */; };
@@ -98,7 +99,6 @@
 		851355A82A605D8F00DF03B4 /* BudgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetsView.swift; sourceTree = "<group>"; };
 		851355AA2A6064D200DF03B4 /* DailyBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBudgetView.swift; sourceTree = "<group>"; };
 		851355AC2A60655200DF03B4 /* BudgetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailView.swift; sourceTree = "<group>"; };
-		851355AE2A60661000DF03B4 /* CreateTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransactionView.swift; sourceTree = "<group>"; };
 		856297DC2A6AC3FD005BFA78 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		856297E42A6C1C47005BFA78 /* CustomNoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNoContentView.swift; sourceTree = "<group>"; };
 		856297E62A6C607F005BFA78 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
@@ -107,6 +107,8 @@
 		856297F02A6C6FB5005BFA78 /* TransactionsBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsBarChartView.swift; sourceTree = "<group>"; };
 		856297F22A6DF1DE005BFA78 /* BudgetListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListRowView.swift; sourceTree = "<group>"; };
 		857498042A71E69800F9F66D /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
+		857F95D32A77C000007F8E03 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+		857F95D52A77D6F8007F8E03 /* CreateTransactionImproved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransactionImproved.swift; sourceTree = "<group>"; };
 		8582E6752A6EE1A2002DCD57 /* BudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTests.swift; sourceTree = "<group>"; };
 		8582E6772A6EF5C4002DCD57 /* FabActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabActionButton.swift; sourceTree = "<group>"; };
 		85AA64AC2A681D04004DCDE2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -270,8 +272,8 @@
 			children = (
 				851355AA2A6064D200DF03B4 /* DailyBudgetView.swift */,
 				851355A82A605D8F00DF03B4 /* BudgetsView.swift */,
+				857F95D32A77C000007F8E03 /* TransactionsView.swift */,
 				856297E82A6C620D005BFA78 /* DashboardView.swift */,
-				85AA64AC2A681D04004DCDE2 /* SettingsView.swift */,
 			);
 			path = NavigationViews;
 			sourceTree = "<group>";
@@ -288,7 +290,7 @@
 		85D77C642A6FFA23007777DF /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
-				851355AE2A60661000DF03B4 /* CreateTransactionView.swift */,
+				857F95D52A77D6F8007F8E03 /* CreateTransactionImproved.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -374,6 +376,7 @@
 		85F0913D2A64A7C90060EF81 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				85AA64AC2A681D04004DCDE2 /* SettingsView.swift */,
 				85B5362E2A73EFBE0050D766 /* NavigationViews */,
 				85B5362B2A73EB0F0050D766 /* Goal */,
 				85D77C712A702866007777DF /* Account */,
@@ -546,13 +549,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				856297E72A6C607F005BFA78 /* Haptics.swift in Sources */,
+				857F95D62A77D6F8007F8E03 /* CreateTransactionImproved.swift in Sources */,
 				851355AB2A6064D200DF03B4 /* DailyBudgetView.swift in Sources */,
 				85D77C892A714E88007777DF /* TransactionsSection.swift in Sources */,
 				856297EE2A6C6641005BFA78 /* SwiftDataAppContainer.swift in Sources */,
 				85D77C702A701820007777DF /* Protocols.swift in Sources */,
+				857F95D42A77C000007F8E03 /* TransactionsView.swift in Sources */,
 				85D77C732A702875007777DF /* AccountListRow.swift in Sources */,
 				856297F12A6C6FB5005BFA78 /* TransactionsBarChartView.swift in Sources */,
-				851355AF2A60661000DF03B4 /* CreateTransactionView.swift in Sources */,
 				857498052A71E69800F9F66D /* CustomPicker.swift in Sources */,
 				85D77C8B2A719562007777DF /* AccountsView.swift in Sources */,
 				85B536282A73C9D70050D766 /* Goal.swift in Sources */,

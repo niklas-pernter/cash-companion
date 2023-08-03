@@ -9,12 +9,17 @@ import Foundation
 import SwiftData
 
 @Model
-final class Account: Hashable {
+final class Account {
 
     let name: String
     var initialAmount: Double
-    @Relationship(.nullify)
+    
+    @Relationship(.cascade)
     var transactions: [Transaction] = []
+    
+    @Relationship(.cascade)
+    var budgets: [Budget] = []
+
     
     init(name: String, initialAmount: Double) {
         self.name = name

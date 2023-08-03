@@ -36,12 +36,12 @@ struct BudgetListRowView: View {
                 Text(budget.nettoAmount.asCurrency())
                 Spacer()
                 HStack {
-                    if(budget.getRemainingDays() == nil) {
+                    if(budget.remainingDays == nil) {
                         Text("Expired").font(.caption).foregroundColor(.red)
                         Image(systemName: "clock")
                             .font(.caption).foregroundColor(.red)
                     } else {
-                        Text(String(budget.getRemainingDays()!) + " Days").font(.caption)
+                        Text(String(budget.remainingDays!) + " Days").font(.caption)
                         Image(systemName: "clock")
                             .font(.caption)
                     }

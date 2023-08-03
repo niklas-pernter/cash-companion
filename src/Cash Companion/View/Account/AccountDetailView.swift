@@ -82,7 +82,7 @@ struct AccountDetailView: View {
                         account.transactions.append(transaction)
                     })
                     
-                }.presentationDetents([.medium])
+                }.presentationDetents([.fraction(0.4)])
             }
             
         }

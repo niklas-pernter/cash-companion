@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct TransactionListRow: View {
-
+    
     let transaction: Transaction
     let onDelete: () -> Void
     
@@ -19,26 +19,22 @@ struct TransactionListRow: View {
             HStack {
                 Text(transaction.name ?? "Unnamed")
                 
-                Text(transaction.category?.name ?? "").visible(transaction.category != nil)
-                    .font(.caption)
-                    .foregroundStyle(.blue)
-                    .fontWeight(.semibold)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 4)
-                    .background(Color.blue.opacity(0.1), in:
-                        RoundedRectangle(
-                            cornerRadius: 8,
-                            style: .continuous
-                        ))
+                if let category = transaction.category {
+                    Text(category.name)
+                        .font(.caption)
+                        .padding(6)
+                        .background(.blue.opacity(0.1))
+                        .cornerRadius(8)
+                }
                 
-
+                
                 Spacer()
                 Text(String(transaction.amount) + "$")
             }
             Text(transaction.createdAt, style: .date)
                 .font(.subheadline)
                 .foregroundColor(.gray)
-
+            
         }.swipeActions(allowsFullSwipe: true) {
             Button(role: .destructive) {
                 withAnimation {

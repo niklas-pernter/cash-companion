@@ -41,7 +41,7 @@ struct BudgetsView: View {
                         } label: {
                             BudgetListRowView(budget: budget, onDelete: { budget in
                                 deleteBudget(budget: budget)
-
+                                
                             })
                         }
                     }
@@ -59,10 +59,20 @@ struct BudgetsView: View {
                     NavigationStack {
                         CreateBudgetView()
                         
-                    }.presentationDetents([.medium])
+                    }.presentationDetents([.fraction(0.4)])
                 }
                 
             }
+           .toolbar {
+               NavigationLink {
+                   SettingsView()
+               } label: {
+                   Image(systemName: "person.crop.circle")
+               }
+               
+           }
+           
+
         }
     }
     

@@ -13,38 +13,38 @@ struct ContentView: View {
     
     
     var body: some View {
-        NavigationStack {
-            TabView {
-                DailyBudgetView()
-                    .tabItem {
-                        Image(systemName: "dollarsign")
-                        Text("Daily Budget")
-                    }
-                
-                BudgetsView()
-                    .tabItem {
-                        Image(systemName: "list.dash")
-                        Text("Budgets")
-                    }
-                
-                DashboardView()
-                    .tabItem {
-                        Image(systemName: "chart.bar.fill")
-                        Text("Dashboard")
-                    }
-                SettingsView()
-                    .tabItem {
-                        Image(systemName: "gear")
-                        Text("Settings")
-                    }
-                
-                
-                
-            }
-            .environmentObject(selectedBudget)
-            .background(.ultraThinMaterial)
+        
+        TabView {
+            DailyBudgetView()
+                .tabItem {
+                    Image(systemName: "dollarsign")
+                    Text("Daily Budget")
+                }
+            
+            BudgetsView()
+                .tabItem {
+                    Image(systemName: "list.dash")
+                    Text("Budgets")
+                }
+            
+            TransactionsView()
+                .tabItem {
+                    Image(systemName: "list.dash")
+                    Text("Transactions")
+                }
+            
+            DashboardView()
+                .tabItem {
+                    Image(systemName: "chart.bar.fill")
+                    Text("Dashboard")
+                }
+            
             
         }
+        .environmentObject(selectedBudget)
+        .background(.ultraThinMaterial)
+        
+        
         
         
     }

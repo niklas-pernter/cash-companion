@@ -17,26 +17,21 @@ struct CreateBudgetView: View {
     
     @State private var startDate: Date = Date()
     @State private var endDate: Date = Date().addDays(days: 1)
-    @State var amount: Double = 0.0
-    
+    @State var amountCents: Int = 0
+    @State var transactionMode = TransactionMode.income
     @State private var name: String = ""
     @FocusState private var focusedField: FocusedField?
     
     var body: some View {
         Form {
             
-            Section {
-                HStack {
-                    TextField("Name", text: $name).focused($focusedField, equals: .name)
-                    Divider()
-                    TextField("Amount", value: $amount, formatter: NumberFormatter.dollarNumberFormatter)
-                }
-            }
+            AmountInputView(amountCents: $amountCents, transactionMode: $transactionMode, selectableOptions: [.income]).listRowBackground(Color.clear)
             
+                    
             
             
             Section{
-                
+                TextField("Name", text: $name).focused($focusedField, equals: .name)
                 DatePicker("Start", selection: $startDate, displayedComponents: .date)
                     .onChange(of: startDate) {
                         if startDate > endDate {
@@ -52,28 +47,29 @@ struct CreateBudgetView: View {
                 
             }
             
-            Button("Create Budget") {
-                withAnimation {
-                    let budget = Budget(name: name, startDate: startDate, endDate: endDate, amount: amount)
-                    modelContext.insert(budget)
-                    Haptics.shared.notify(.success)
-                    dismiss()
-                }
-            }
-            .disabled(name.isEmpty)
-            
         }.onAppear {
             focusedField = .name
         }
         .navigationTitle("Create Budget")
         .toolbar {
-            
             ToolbarItem(placement: .cancellationAction) {
                 Button("Dismiss") {
                     dismiss()
-                }
+                }.foregroundColor(.red)
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Create") {
+                    create()
+                }.disabled(name.isEmpty)
             }
         }
+    }
+    
+    func create() {
+        let budget = Budget(name: name, startDate: startDate, endDate: endDate, amount: amountCents.toDollars())
+        modelContext.insert(budget)
+        Haptics.shared.notify(.success)
+        dismiss()
     }
 }
 

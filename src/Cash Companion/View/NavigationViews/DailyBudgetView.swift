@@ -36,8 +36,18 @@ struct DailyBudgetView: View {
                     
                 } else {
                     if let budget = selectedBudget.budget {
-                        BudgetListRowView(budget: budget, onDelete: {_ in}).withSwipeActions(actions: false)
-                            .onTapGesture {
+                        
+                        Section {
+                            VStack {
+                                BudgetListRowView(budget: budget, onDelete: {_ in}).withSwipeActions(actions: false)
+                                if !budget.transactions.isEmpty {
+                                    TransactionsBarChartView(transactions: budget.transactions, title: "")
+
+                                    
+                                }
+                            
+
+                            }.onTapGesture {
                                 showBudgetPreview = true
                             }
                             .contextMenu {
@@ -56,6 +66,10 @@ struct DailyBudgetView: View {
                                     BudgetDetailView(budget: budget, isPreview: true)
                                 }
                             })
+                                                        
+                        }
+                        
+
                         
                         
                         Section {
@@ -80,7 +94,7 @@ struct DailyBudgetView: View {
                                         .padding(.trailing)
                                 }
                                 Spacer()
-
+                                
                                 VStack {
                                     Text("Tomorrow")
                                     if distribute {
@@ -91,18 +105,34 @@ struct DailyBudgetView: View {
                                             Text("-").font(.caption)
                                             Text(budget.calculateDailyBudget(distribute: distribute, customCurrentDate: Date().addDays(days: 1)).asCurrency()).font(.caption)
                                         }
-
+                                        
                                     }
                                     
                                 }
                                 Spacer()
-
+                                
                             }
                         }.headerProminence(.increased)
+                        
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                print("Round Action")
+                            }) {
+                                Image(systemName: "plus")
+                                    .frame(width: 75, height: 75)
+                                    
+                                    .background(.blue.opacity(0.4))
+                                    .clipShape(Circle())
+                            }
+                            Spacer()
+                        }.listRowBackground(Color.blue.opacity(0))
+                        
+                        
+                        
                     }
                 }
             }
-            .navigationTitle("Daily Budget")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu(content: {
@@ -111,7 +141,7 @@ struct DailyBudgetView: View {
                                 Text(budget.name).foregroundColor(.gray)
                             }
                         }
-                                            
+                        
                     }, label: {
                         Label ("Destination", systemImage: "filemenu.and.selection")
                     })
@@ -122,14 +152,16 @@ struct DailyBudgetView: View {
                         SettingsView()
                     } label: {
                         Image(systemName: "person.crop.circle")
-                        
                     }
                 }
                 
                 
             }
-        }.onAppear {
-            selectedBudget.budget = selectedBudget.budget ?? budgets.first
+            .onAppear {
+                selectedBudget.budget = selectedBudget.budget ?? budgets.first
+            }
+            .navigationTitle("Daily Budget")
+
         }
     }
     

@@ -23,9 +23,8 @@ extension Array where Element: Transaction {
         case createdAt
         case amount
     }
-
     
-    func sortedTransactions(by method: TransactionSortMethod = .createdAt) -> [Transaction] {
+    func sorted(by method: TransactionSortMethod = .createdAt) -> [Transaction] {
         switch method {
         case .name:
             return self.sorted(by: { $0.name ?? "" < $1.name ?? "" })
@@ -35,9 +34,9 @@ extension Array where Element: Transaction {
             return self.sorted(by: { $0.amount > $1.amount })
         }
     }
-
     
-    var summed: Double {
+    
+    var sum: Double {
         return self.reduce(0, { $0 + $1.amount})
     }
     
